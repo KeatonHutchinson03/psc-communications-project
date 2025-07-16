@@ -1,0 +1,16 @@
+[
+  {
+    "id": 1,
+    "title": "Fighting Wildfires with AI",
+    "description": "Researchers used PSC’s Bridges-2 to train wildfire prediction models.",
+    "researcher": "Dr. John Doe, Stanford",
+    "tags": ["AI", "Climate"]
+  },
+  {
+    "id": 2,
+    "title": "Genomics Breakthroughs",
+    "description": "PSC enabled massive genome sequencing projects for disease research.",
+    "researcher": "UPMC Bioinformatics Lab",
+    "tags": ["Genomics", "Health"]
+  }
+]
