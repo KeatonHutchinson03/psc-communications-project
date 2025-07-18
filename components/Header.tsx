@@ -3,9 +3,14 @@ import headerNavLinks from '@/data/headerNavLinks'
 import Link from './Link'
 import MobileNav from './MobileNav'
 import ThemeSwitch from './ThemeSwitch'
-import SearchButton from './SearchButton'
+import SearchButton from '@/components/SearchButton'
+import type { Story } from '@/types/story' // Make sure this type exists and matches your story data shape
 
-const Header = () => {
+interface HeaderProps {
+  onSelectStory: (story: Story) => void
+}
+
+const Header = ({ onSelectStory }: HeaderProps) => {
   let headerClass = 'flex items-center w-full bg-white dark:bg-gray-950 justify-between py-10'
   if (siteMetadata.stickyNav) {
     headerClass += ' sticky top-0 z-50'
@@ -39,7 +44,8 @@ const Header = () => {
               </Link>
             ))}
         </div>
-        <SearchButton />
+        {/* Pass the onSelectStory function down to the SearchButton */}
+        <SearchButton onSelectStory={onSelectStory} />
         <ThemeSwitch />
         <MobileNav />
       </div>
