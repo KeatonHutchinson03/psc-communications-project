@@ -62,6 +62,7 @@ A single-page web application built to showcase impactful stories supported by t
 
 ## 📁 Project Structure
 
+```
 psc-communications-project/
 ├── app/
 │ ├── layout.tsx
@@ -99,3 +100,4 @@ psc-communications-project/
 │ └── Stories.ts
 ├── types/
 │ └── story.ts
+```
