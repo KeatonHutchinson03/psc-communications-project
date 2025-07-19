@@ -33,16 +33,23 @@ A single-page web application built to showcase impactful stories supported by t
    ```
 
 2. **Install Dependencies**
-   '''bash
+
+   ```bash
    yarn install
+   ```
 
 3. **Fix Registry issues (if needed)**
-   '''bash
+
+   ```bash
    yarn config set npmRegistryServer https://registry.yarnpkg.com
+   ```
 
 4. **Run Development Server (locally)**
-   '''bash
+
+   ```bash
    yarn dev
+
+   ```
 
    -site can be found on "http://localhost:3000"
 
