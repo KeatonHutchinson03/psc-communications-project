@@ -6,7 +6,7 @@ const siteMetadata = {
   description: 'A public posting spot made for impact stories from PSC',
   language: 'en-us',
   theme: 'system', // system, dark or light
-  siteUrl: 'https://tailwind-nextjs-starter-blog.vercel.app',
+  siteUrl: 'https://psc-communications-project.vercel.app',
   siteRepo: 'https://github.com/KeatonHutchinson03/psc-communications-project',
   siteLogo: `${process.env.BASE_PATH || ''}/static/images/psclogo.png`,
   socialBanner: `${process.env.BASE_PATH || ''}/static/images/twitter-card.png`,

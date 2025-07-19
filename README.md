@@ -1,6 +1,6 @@
 # PSC Impact Stories Web Application
 
-A single-page web application built to showcase impactful stories supported by the **Pittsburgh Supercomputing Center (PSC)**. This project is part of the **PSC Impact Stories** initiative — a series of short features highlighting how PSC’s computing resources have helped researchers solve real-world problems.
+A single-page web application built to showcase impactful stories supported by the **Pittsburgh Supercomputing Center (PSC)**. This project is part of the **PSC Impact Stories** initiative - a series of short features highlighting how PSC’s computing resources have helped researchers solve real-world problems.
 
 ---
 
