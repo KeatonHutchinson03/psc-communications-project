@@ -51,7 +51,7 @@ A single-page web application built to showcase impactful stories supported by t
 
    ```
 
-   - site can be found on "http://localhost:3000"
+   - site can be found on http://localhost:3000
 
 5. **Run on Vercel**
    - Push code to github
