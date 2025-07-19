@@ -27,7 +27,7 @@ A single-page web application built to showcase impactful stories supported by t
 1. **Clone the repository:**
 
    ```bash
-   git clone https://github.com/your-username/psc-communications-project.git
+   git clone https://github.com/KeatonHutchinson03/psc-communications-project.git
    cd psc-communications-project
 
    ```
@@ -51,11 +51,11 @@ A single-page web application built to showcase impactful stories supported by t
 
    ```
 
-   -site can be found on "http://localhost:3000"
+   - site can be found on "http://localhost:3000"
 
 5. **Run on Vercel**
-   -Push code to github
-   -Go to https://vercel.com and create an account
-   -Import GitHub repo with Next.js as the framework
-   -set yarn install as the install command with yarn build as the build command
-   -Vercel will now build and deploy your site on a public URL!
+   - Push code to github
+   - Go to https://vercel.com and create an account
+   - Import GitHub repo with Next.js as the framework
+   - set yarn install as the install command with yarn build as the build command
+   - Vercel will now build and deploy your site on a public URL!
