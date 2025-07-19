@@ -7,10 +7,10 @@ A single-page web application built to showcase impactful stories supported by t
 ## 🚀 Tech Stack
 
 - **Framework:** [Next.js](https://nextjs.org/)
+- **Language:** [TypeScript](https://www.typescriptlang.org/)
 - **Styling:** [Tailwind CSS](https://tailwindcss.com/)
-- **Content Management:** [Contentlayer](https://contentlayer.dev/)
 - **Image Optimization:** Next.js `<Image>` component
-- **Deployment (Optional):** [Vercel](https://vercel.com/)
+- **Deployment:** [Vercel](https://vercel.com/)
 
 ---
 
@@ -59,3 +59,43 @@ A single-page web application built to showcase impactful stories supported by t
    - Import GitHub repo with Next.js as the framework
    - set yarn install as the install command with yarn build as the build command
    - Vercel will now build and deploy your site on a public URL!
+
+## 📁 Project Structure
+
+psc-communications-project/
+├── app/
+│ ├── layout.tsx
+│ ├── Main.tsx
+│ ├── not-found.tsx
+│ ├── page.tsx
+│ ├── sitemap.ts
+│ └── theme-providers.tsx
+├── components/
+│ ├── social-icons/
+│ ├── Footer.tsx
+│ ├── Header.tsx
+│ ├── Image.tsx
+│ ├── IntroSection.tsx
+│ ├── LayoutWrapper.tsx
+│ ├── Link.tsx
+│ ├── MobileNav.tsx
+│ ├── PageTitle.tsx
+│ ├── SearchButton.tsx
+│ ├── SectionContainer.tsx
+│ ├── StoryCard.tsx
+│ ├── StoryList.tsx
+│ └── ThemeSwitch.tsx
+├── css/
+│ ├── prism.css
+│ └── tailwind.css
+├── data/
+│ ├── headerNavLinks.ts
+│ ├── siteMetadata.js
+│ └── stories.json
+├── public/
+│ └── static/
+│ └── search.json
+├── schemas/
+│ └── Stories.ts
+├── types/
+│ └── story.ts
