@@ -1,8 +1,9 @@
 import { makeSource } from 'contentlayer2/source-files'
+import { Stories } from './schemas/Stories'
 
 export default makeSource({
   contentDirPath: 'data',
-  documentTypes: [], // No document types, so no files get processed
+  documentTypes: [Stories],
   mdx: {
     cwd: process.cwd(),
     remarkPlugins: [],
