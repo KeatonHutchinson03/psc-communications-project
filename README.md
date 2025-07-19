@@ -12,6 +12,14 @@ A single-page web application built to showcase impactful stories supported by t
 - **Image Optimization:** Next.js `<Image>` component
 - **Deployment:** [Vercel](https://vercel.com/)
 
+## 📌 Why This Tech Stack Was Chosen
+
+- **Next.js**: Enables fast performance through static generation and server-side rendering, ideal for SEO and scalable content delivery.
+- **TypeScript**: Adds type safety and improves code reliability, making development more maintainable and collaborative.
+- **Tailwind CSS**: Utility-first CSS framework that speeds up development and ensures consistent, responsive design across devices.
+- **Next.js `<Image>` component**: Automatically optimizes images for performance, accessibility, and responsive delivery.
+- **Vercel**: Seamless deployment platform for Next.js with features like preview deployments, global CDN, and GitHub integration.
+
 ---
 
 ## 🧰 1. Setup Instructions
