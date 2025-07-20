@@ -148,7 +148,7 @@ psc-communications-project/
 ### Data Flow Summary
 
 - At build or runtime, stories are loaded from `data/stories.json`.
-- The `StoryList` component renders these stories as clickable `StoryCard`s.
-- Users interact with UI elements such as theme switching, navigation, and search (powered by `search.json`).
+- The `StoryList.tsx` component renders these stories as clickable StoryCards via `StoryCard.tsx`
+- Users interact with UI elements such as theme switching via `ThemeSwitch.tsx`, navigation via `MobileNav.tsx`, and search via `SearchButton.tsx`
 - Pages are dynamically composed using React components in `app/` and `components/`.
 - Global theming and layout are managed via `theme-providers.tsx` and `layout.tsx`.
