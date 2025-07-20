@@ -6,7 +6,7 @@ A single-page web application built to showcase impactful stories supported by t
 
 ## 📸 Demo
 
-![PSC Impact Stories Screenshot](./public/static/demo-screenshot.png)
+![PSC Impact Stories Screenshot](./public/static/images/demo-screenshot.png)
 
 You can see the live version here: [psc-communications-project.vercel.app](https://psc-communications-project.vercel.app)
 
