@@ -109,3 +109,46 @@ psc-communications-project/
 ├── types/
 │ └── story.ts
 ```
+
+## How It Works
+
+### Core Structure Explained with Workflow
+
+- **`app/`**
+  - Contains main app-level components and routing logic.
+  - `layout.tsx`: Sets up the overall page layout and integrates theme providers.
+  - `page.tsx`: Homepage entry point, fetching and rendering stories dynamically.
+  - `Main.tsx`: Handles the core content area.
+  - `not-found.tsx`: Displays a user-friendly 404 page for unknown routes.
+  - `sitemap.ts`: Generates the sitemap for SEO purposes.
+
+- **`components/`**
+  - Reusable UI components building the page structure and user interface.
+  - `Header.tsx` & `Footer.tsx`: Manage consistent site header and footer.
+  - `StoryCard.tsx` & `StoryList.tsx`: Display individual stories and lists of stories.
+  - `ThemeSwitch.tsx`: Allows users to toggle light/dark modes.
+  - `MobileNav.tsx`: Handles navigation on mobile devices.
+  - Other components like `IntroSection.tsx`, `SearchButton.tsx`, and `PageTitle.tsx` provide modular page sections and interactions.
+
+- **`data/`**
+  - Contains static data and configuration files.
+  - `stories.json`: Holds the content data for all impact stories.
+  - `headerNavLinks.ts`: Defines navigation links in the header.
+  - `siteMetadata.js`: Contains metadata such as site title, description, and author info.
+
+- **`schemas/` & `types/`**
+  - Define TypeScript types and validation schemas to ensure consistent data handling.
+
+- **`css/`**
+  - Global styles and syntax highlighting themes, primarily managed with Tailwind CSS and Prism.
+
+- **`public/`**
+  - Hosts static assets like images and the search index (`search.json`).
+
+### Data Flow Summary
+
+- At build or runtime, stories are loaded from `data/stories.json`.
+- The `StoryList` component renders these stories as clickable `StoryCard`s.
+- Users interact with UI elements such as theme switching, navigation, and search (powered by `search.json`).
+- Pages are dynamically composed using React components in `app/` and `components/`.
+- Global theming and layout are managed via `theme-providers.tsx` and `layout.tsx`.
