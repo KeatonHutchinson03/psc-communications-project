@@ -5,6 +5,7 @@ import stories from '../data/stories.json'
 import Header from '@/components/Header'
 import StoryList from '@/components/StoryList'
 import IntroSection from '@/components/IntroSection'
+import SharedStoryList from '@/components/SharedStoryList'
 
 interface Story {
   id: number
@@ -14,9 +15,16 @@ interface Story {
   tags: string[]
 }
 
+interface SharedStory {
+  id: number
+  name: string
+  email: string
+  title: string
+  description: string
+}
 export default function Page() {
   const [selectedStories, setSelectedStories] = useState<Story[]>([])
-  const [sharedStories, setSharedStories] = useState<Story[]>([])
+  const [sharedStories, setSharedStories] = useState<SharedStory[]>([])
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -25,19 +33,21 @@ export default function Page() {
   })
   const [loading, setLoading] = useState(true)
 
-  useEffect(() => {
-    const fetchSharedStories = async () => {
-      try {
-        const res = await fetch('/api/shared-stories')
-        const data = await res.json()
-        setSharedStories(data)
-      } catch (err) {
-        console.error('Failed to load shared stories', err)
-      } finally {
-        setLoading(false)
-      }
+  // Move fetchSharedStories outside useEffect so handleSubmit can call it
+  const fetchSharedStories = async () => {
+    setLoading(true)
+    try {
+      const res = await fetch('/api/shared-stories')
+      const data = await res.json()
+      setSharedStories(data)
+    } catch (err) {
+      console.error('Failed to load shared stories', err)
+    } finally {
+      setLoading(false)
     }
+  }
 
+  useEffect(() => {
     fetchSharedStories()
   }, [])
 
@@ -52,36 +62,22 @@ export default function Page() {
     setFormData({ ...formData, [e.target.name]: e.target.value })
   }
 
+  // Updated handleSubmit that posts formData and refreshes shared stories after submit
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
 
-    const newStory = {
-      id: Date.now(),
-      title: formData.title,
-      description: formData.description,
-      researcher: formData.name,
-      tags: [],
-    }
+    const res = await fetch('/api/shared-stories', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(formData),
+    })
 
-    try {
-      const res = await fetch('/api/shared-stories', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(newStory),
-      })
-
-      if (!res.ok) throw new Error('Failed to submit story')
-
-      const saved = await res.json()
-
-      setSharedStories((prev) => [saved, ...prev])
-      setFormData({ name: '', email: '', title: '', description: '' })
+    if (res.ok) {
       alert('Thank you for your submission!')
-    } catch (err) {
-      console.error(err)
-      alert('Failed to submit story')
+      setFormData({ name: '', email: '', title: '', description: '' })
+      fetchSharedStories() // refresh stories below the form
+    } else {
+      alert('Error submitting story')
     }
   }
 
@@ -175,7 +171,7 @@ export default function Page() {
               Shared Stories
             </h2>
 
-            {loading ? <p>Loading...</p> : <StoryList stories={sharedStories} />}
+            {loading ? <p>Loading...</p> : <SharedStoryList stories={sharedStories} />}
           </section>
         )}
       </main>

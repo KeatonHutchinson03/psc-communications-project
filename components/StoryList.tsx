@@ -15,6 +15,8 @@ type StoryListProps = {
 }
 
 export default function StoryList({ stories }: StoryListProps) {
+  // Log all the story IDs to check for uniqueness and existence
+
   if (!stories.length) {
     return <p className="text-center text-gray-500 dark:text-gray-400">No stories found.</p>
   }
