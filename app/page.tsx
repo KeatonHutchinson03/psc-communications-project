@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import stories from '../data/stories.json'
 import Header from '@/components/Header'
 import StoryList from '@/components/StoryList'
@@ -15,36 +15,79 @@ interface Story {
 }
 
 export default function Page() {
-  const [selectedStory, setSelectedStory] = useState<Story | null>(null)
+  const [selectedStories, setSelectedStories] = useState<Story[]>([])
+  const [sharedStories, setSharedStories] = useState<Story[]>([])
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     title: '',
     description: '',
   })
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    const fetchSharedStories = async () => {
+      try {
+        const res = await fetch('/api/shared-stories')
+        const data = await res.json()
+        setSharedStories(data)
+      } catch (err) {
+        console.error('Failed to load shared stories', err)
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    fetchSharedStories()
+  }, [])
+
+  const handleSelectStory = (story: Story) => {
+    setSelectedStories((prev) => {
+      if (prev.find((s) => s.id === story.id)) return prev
+      return [...prev, story]
+    })
+  }
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value })
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
 
-    // Log submission to console
-    console.log('New story submission:', formData)
+    const newStory = {
+      id: Date.now(),
+      title: formData.title,
+      description: formData.description,
+      researcher: formData.name,
+      tags: [],
+    }
 
-    // Optional: reset form
-    setFormData({ name: '', email: '', title: '', description: '' })
+    try {
+      const res = await fetch('/api/shared-stories', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(newStory),
+      })
 
-    // You can optionally show a thank you message or notification here
-    alert('Thank you for your submission!')
+      if (!res.ok) throw new Error('Failed to submit story')
 
-    // In a real app, you’d send this to an API or backend to store
+      const saved = await res.json()
+
+      setSharedStories((prev) => [saved, ...prev])
+      setFormData({ name: '', email: '', title: '', description: '' })
+      alert('Thank you for your submission!')
+    } catch (err) {
+      console.error(err)
+      alert('Failed to submit story')
+    }
   }
 
   return (
     <>
-      <Header onSelectStory={setSelectedStory} />
+      <Header onSelectStory={handleSelectStory} selectedStories={selectedStories} />
 
       <main className="mx-auto max-w-5xl space-y-8 px-4 py-8">
         <IntroSection />
@@ -53,12 +96,16 @@ export default function Page() {
           PSC Impact Stories
         </h2>
 
-        {selectedStory ? <StoryList stories={[selectedStory]} /> : <StoryList stories={stories} />}
+        {selectedStories.length > 0 ? (
+          <StoryList stories={selectedStories} />
+        ) : (
+          <StoryList stories={stories} />
+        )}
 
-        {selectedStory && (
+        {selectedStories.length > 0 && (
           <div className="text-center">
             <button
-              onClick={() => setSelectedStory(null)}
+              onClick={() => setSelectedStories([])}
               className="mt-4 rounded bg-blue-600 px-4 py-2 text-white hover:bg-blue-700"
             >
               Show All Stories
@@ -121,6 +168,16 @@ export default function Page() {
             </button>
           </form>
         </section>
+
+        {sharedStories.length > 0 && (
+          <section className="mt-12">
+            <h2 className="text-center text-4xl font-bold text-gray-900 dark:text-gray-100">
+              Shared Stories
+            </h2>
+
+            {loading ? <p>Loading...</p> : <StoryList stories={sharedStories} />}
+          </section>
+        )}
       </main>
     </>
   )

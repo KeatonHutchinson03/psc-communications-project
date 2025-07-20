@@ -11,7 +11,13 @@ interface Story {
   tags: string[]
 }
 
-const SearchButton = ({ onSelectStory }: { onSelectStory: (story: Story) => void }) => {
+const SearchButton = ({
+  onSelectStory,
+  selectedStories,
+}: {
+  onSelectStory: (story: Story) => void
+  selectedStories: Story[]
+}) => {
   const [query, setQuery] = useState('')
   const [isOpen, setIsOpen] = useState(false)
 
@@ -65,25 +71,40 @@ const SearchButton = ({ onSelectStory }: { onSelectStory: (story: Story) => void
             </div>
 
             <ul className="max-h-64 space-y-2 overflow-y-auto">
-              {filteredStories.map((story) => (
-                <li key={story.id}>
-                  <button
-                    onClick={() => {
-                      onSelectStory(story)
-                      setIsOpen(false)
-                    }}
-                    className="w-full rounded p-2 text-left hover:bg-gray-100 dark:hover:bg-gray-800"
-                  >
-                    <p className="font-semibold">{story.title}</p>
-                    <p className="text-sm text-gray-600 dark:text-gray-300">{story.description}</p>
-                    <p className="text-xs text-gray-500 italic dark:text-gray-400">
-                      by {story.researcher}
-                    </p>
-                  </button>
-                </li>
-              ))}
-              {filteredStories.length === 0 && <li>No results found.</li>}
+              {filteredStories.map((story) => {
+                const isSelected = selectedStories.some((s) => s.id === story.id)
+
+                return (
+                  <li key={story.id}>
+                    <button
+                      onClick={() => onSelectStory(story)}
+                      className={`w-full rounded p-2 text-left hover:bg-gray-100 dark:hover:bg-gray-800 ${
+                        isSelected ? 'border border-blue-500 bg-blue-50 dark:bg-blue-900' : ''
+                      }`}
+                    >
+                      <div className="flex items-start justify-between">
+                        <div>
+                          <p className="font-semibold">{story.title}</p>
+                          <p className="text-sm text-gray-600 dark:text-gray-300">
+                            {story.description}
+                          </p>
+                          <p className="text-xs text-gray-500 italic dark:text-gray-400">
+                            by {story.researcher}
+                          </p>
+                        </div>
+                        {isSelected && <span className="text-blue-600">✔️</span>}
+                      </div>
+                    </button>
+                  </li>
+                )
+              })}
             </ul>
+
+            <div className="mt-4 text-right">
+              <button onClick={() => setIsOpen(false)} className="text-sm text-blue-500">
+                Done
+              </button>
+            </div>
           </div>
         </div>
       )}

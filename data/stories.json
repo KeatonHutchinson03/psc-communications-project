@@ -4,34 +4,34 @@
     "title": "Fighting Wildfires with AI",
     "description": "Researchers used PSC’s Bridges-2 to train wildfire prediction models.",
     "researcher": "Dr. John Doe, Stanford",
-    "tags": ["AI", "Climate"]
+    "tags": ["AI", "Climate", "Funder"]
   },
   {
     "id": 1,
     "title": "Genomics Breakthroughs",
     "description": "PSC enabled massive genome sequencing projects for disease research.",
     "researcher": "UPMC Bioinformatics Lab",
-    "tags": ["Genomics", "Health"]
+    "tags": ["Genomics", "Health", "Internal"]
   },
   {
     "id": 2,
     "title": "Harnessing Supercomputers to Fight Cancer",
     "description": "Using PSC's Bridges-2 supercomputer, Dr. Patel’s lab ran deep learning models to simulate how thousands of potential cancer drugs interact with protein targets. What would have taken months on a typical lab workstation was completed in just days — helping accelerate preclinical screening for breast cancer treatments.",
     "researcher": "Dr. Ananya Patel, University of Chicago",
-    "tags": ["AI", "Cancer Research", "Bridges-2"]
+    "tags": ["AI", "Cancer Research", "Bridges-2", "General"]
   },
   {
     "id": 3,
     "title": "Predicting Coral Bleaching Events in Real Time",
     "description": "Using high-resolution ocean climate models on PSC’s systems, Prof. Fernandez can now forecast coral bleaching events weeks in advance. This empowers marine conservation groups to intervene before reefs are critically damaged, preserving marine biodiversity.",
     "researcher": "Prof. Luis Fernandez, University of Miami",
-    "tags": ["Climate", "Oceanography", "Conservation", "Modeling", "Research"]
+    "tags": ["Climate", "Oceanography", "Conservation", "Modeling", "Research", "General"]
   },
   {
     "id": 4,
     "title": "Modeling Teen Mental Health Trends at Scale",
     "description": "To better understand rising anxiety and depression in teens, Dr. Kim used agent-based modeling on PSC’s systems to simulate social interactions, social media exposure, and access to care. Her team’s findings are now helping public health departments design better outreach programs.",
     "researcher": "Sarah Kim, Carnegie Mellon University",
-    "tags": ["Public Health", "Social Impact", "Simulation", "Mental Health"]
+    "tags": ["Public Health", "Social Impact", "Simulation", "Mental Health", "Users"]
   }
 ]
