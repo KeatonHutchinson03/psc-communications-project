@@ -13,6 +13,7 @@ You can see the live version here: [psc-communications-project.vercel.app](https
 ## 🚀 Tech Stack
 
 - **Framework:** [Next.js](https://nextjs.org/)
+- **Framework:** [React](https://react.dev)
 - **Language:** [TypeScript](https://www.typescriptlang.org/)
 - **Styling:** [Tailwind CSS](https://tailwindcss.com/)
 - **Image Optimization:** Next.js `<Image>` component
@@ -21,6 +22,7 @@ You can see the live version here: [psc-communications-project.vercel.app](https
 ## 📌 Why This Tech Stack Was Chosen
 
 - **Next.js**: Enables fast performance through static generation and server-side rendering, ideal for SEO and scalable content delivery.
+- **React**: Component-based JavaScript library for building interactive UIs, enabling reusable code, fast updates through a virtual DOM, and a seamless user experience.
 - **TypeScript**: Adds type safety and improves code reliability, making development more maintainable and collaborative.
 - **Tailwind CSS**: Utility-first CSS framework that speeds up development and ensures consistent, responsive design across devices.
 - **Next.js `<Image>` component**: Automatically optimizes images for performance, accessibility, and responsive delivery.
@@ -99,17 +101,22 @@ psc-communications-project/
 │ ├── SectionContainer.tsx
 │ ├── StoryCard.tsx
 │ ├── StoryList.tsx
+│ ├── SharedStoryCard.tsx
+│ ├── SharedStoryList.tsx
 │ └── ThemeSwitch.tsx
 ├── css/
 │ ├── prism.css
 │ └── tailwind.css
+├── api/
+│ ├── shared-stories/
+│ │ └── route.ts
 ├── data/
 │ ├── headerNavLinks.ts
 │ ├── siteMetadata.js
+│ ├── sharedstories.json
 │ └── stories.json
 ├── public/
 │ └── static/
-│ └── search.json
 ├── schemas/
 │ └── Stories.ts
 ├── types/
@@ -121,6 +128,7 @@ psc-communications-project/
 ### Core Structure Explained with Workflow
 
 - **`app/`**
+
   - Contains main app-level components and routing logic.
   - `layout.tsx`: Sets up the overall page layout and integrates theme providers.
   - `page.tsx`: Homepage entry point, fetching and rendering stories dynamically.
@@ -128,33 +136,46 @@ psc-communications-project/
   - `not-found.tsx`: Displays a user-friendly 404 page for unknown routes.
   - `sitemap.ts`: Generates the sitemap for SEO purposes.
 
+- **`api/shared-stories`**
+
+  - `route.ts` controls API routing for collecting json objects from form submission for Shared Stories section of webpage
+
 - **`components/`**
+
   - Reusable UI components building the page structure and user interface.
   - `Header.tsx` & `Footer.tsx`: Manage consistent site header and footer.
   - `StoryCard.tsx` & `StoryList.tsx`: Display individual stories and lists of stories.
+  - `SharedStoryCard.tsx` & `SharedStoryList.tsx`: Display individual shared stories and lists of shared stories.
   - `ThemeSwitch.tsx`: Allows users to toggle light/dark modes.
   - `MobileNav.tsx`: Handles navigation on mobile devices.
   - Other components like `IntroSection.tsx`, `SearchButton.tsx`, and `PageTitle.tsx` provide modular page sections and interactions.
 
 - **`data/`**
+
   - Contains static data and configuration files.
   - `stories.json`: Holds the content data for all impact stories.
+  - `sharedstories.json`: Holds the content data for all shared stories.
   - `headerNavLinks.ts`: Defines navigation links in the header.
   - `siteMetadata.js`: Contains metadata such as site title, description, and author info.
 
 - **`schemas/` & `types/`**
+
   - Define TypeScript types and validation schemas to ensure consistent data handling.
 
 - **`css/`**
+
   - Global styles and syntax highlighting themes, primarily managed with Tailwind CSS and Prism.
 
 - **`public/`**
-  - Hosts static assets like images and the search index (`search.json`).
+  - Hosts static assets like images
 
 ### Data Flow Summary
 
 - At build or runtime, stories are loaded from `data/stories.json`.
-- The `StoryList.tsx` component renders these stories as clickable StoryCards via `StoryCard.tsx`
+- The `StoryList.tsx` component renders these stories as clickable story cards via `StoryCard.tsx`
 - Users interact with UI elements such as theme switching via `ThemeSwitch.tsx`, navigation via `MobileNav.tsx`, and search via `SearchButton.tsx`
+- (local development) `route.ts` informs form for shared story card to route to write to a json file for usage
+  = (Vercel development) `route.ts` informs form for shared story card to connect to backend API to store json information in KV lightweight database thru Vercel for usage
+- The `SharedStoryList.tsx` component renders these stories as clickable shared story cards via `SharedStoryCard.tsx`
 - Pages are dynamically composed using React components in `app/` and `components/`.
 - Global theming and layout are managed via `theme-providers.tsx` and `layout.tsx`.
