@@ -170,7 +170,7 @@ export default function Page() {
             <h2 className="text-center text-4xl font-bold text-gray-900 dark:text-gray-100">
               Shared Stories
             </h2>
-
+            <br></br>
             {loading ? <p>Loading...</p> : <SharedStoryList stories={sharedStories} />}
           </section>
         )}
