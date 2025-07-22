@@ -75,6 +75,18 @@ You can see the live version here: [psc-communications-project.vercel.app](https
    - Import GitHub repo with Next.js as the framework
    - set yarn install as the install command with yarn build as the build command
    - Vercel will now build and deploy your site on a public URL!
+   - Go to project in Vercel and click on storage tab
+   - Find REDIS KV and connect project to REDIS KV for storage and sign in with GitHub
+   - Run command to pull latest environment variable
+   ```bash
+   vercel env pull .env.development.local
+   ```
+   - Install Upstash Redis SDK locally
+   ```bash
+   yarn add @upstash/redis
+   ```
+   - Create shared-stories database within vercel storage tab for project
+   - Now, App is running on public domain with a lightweight storage option for shared stories!
 
 ## 📁 Project Structure
 
