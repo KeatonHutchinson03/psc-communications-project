@@ -86,7 +86,7 @@ You can see the live version here: [psc-communications-project.vercel.app](https
    yarn add @upstash/redis
    ```
    - Create shared-stories database within vercel storage tab for project
-   - Now, App is running on public domain with a lightweight storage option for shared stories!
+   - Setup for Vercel deployment is now correct and ready to view!
 
 ## 📁 Project Structure
 
